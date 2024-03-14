@@ -2,6 +2,8 @@
 const overview = document.querySelector(".overview");
 // github username
 const username = "crtang";
+// list of repos
+const listOfRepos = document.querySelector(".repo-list");
 
 // async function to get info from github profile
 const getGithubInfo = async function () {
@@ -29,4 +31,21 @@ const userInfo = function (jsonData) {
     </div>`;
 
     overview.append(newDiv);
+    getRepos();
 };
+
+const getRepos = async function () {
+	const data = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+	const req = await data.json();
+
+	displayRepoInfo(req);
+};
+
+const displayRepoInfo = function (repos) {
+	for (let repo of repos) {
+		let li = document.createElement("li");
+		li.innerHTML = `<h3>${repo.name}</h3>`;
+		li.classList.add("repo");
+		listOfRepos.append(li);
+	}
+}
