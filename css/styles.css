@@ -161,9 +161,14 @@ ul {
 .filter-repos {
     width: 300px;
     margin-top: 1em;
-    padding: 1em;
     margin-bottom: 1em;
-    border: 2px solid var(--c1);
+    padding: 1em;
+    border: 2px solid var(--c5);
+    border-radius: 5px;
+}
+
+.filter-repos:focus {
+    outline: none;
 }
 
 section.repo-data {
